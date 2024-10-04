@@ -22,3 +22,7 @@ cookies/
 
 # Ignore Hugging Face cache files (if applicable)
 huggingface/
+
+# Logs and yap
+logs/
+yap.md
