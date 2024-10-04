@@ -1,0 +1,24 @@
+# Ignore env
+.env
+
+# Ignore Python bytecode files
+__pycache__/
+*.py[cod]
+
+# Ignore virtual environment directory
+venv/
+.env/
+*.env
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore cookies and login data (which can contain sensitive information)
+cookies/
+
+# Ignore log files
+*.log
+
+# Ignore Hugging Face cache files (if applicable)
+huggingface/
