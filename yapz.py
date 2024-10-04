@@ -64,12 +64,22 @@ with open(yap_filename, 'w') as yap_file:
 print(f"converse in {yap_filename}. save then alt+y to send prompt. see README for keywords")
 
 def send_prompt():
-    # Read the last line from the yap.md file (this should be the user's latest prompt)
+    # Read the yap.md file to get user input
     with open(yap_filename, 'r') as yap_file:
         lines = yap_file.readlines()
 
-    # Get the latest user prompt from the last non-empty line
-    user_prompt = lines[-1].strip()
+    # Find the last occurrence of "**You**:"
+    last_you_index = -1
+    for i in range(len(lines)-1, -1, -1):
+        if "**You**:" in lines[i]:
+            last_you_index = i
+            break
+
+    # If "**You**:" was found, take everything after it as the user prompt
+    if last_you_index != -1:
+        user_prompt = ''.join(line.strip() for line in lines[last_you_index + 1:]).strip()
+    else:
+        user_prompt = ""
 
     # Save log and handle prompts "exit", "new", and "switch"
     if user_prompt == "exit":
@@ -77,7 +87,6 @@ def send_prompt():
         log_filename = get_log_filename()
         os.rename(yap_filename, log_filename)
         print(f"Conversation saved to {log_filename}\n")
-        # This is probably bad practice but who cares
         os._exit(0)  # Forcefully exit the program
     
     # # TODO filling this in later cause it doesn't work (just a placeholder)
@@ -120,6 +129,7 @@ def send_prompt():
 
     print(f"Response from the model printed in {yap_filename}.")
     return True  # Continue the loop
+
 
 def listen_for_keypress():
     keyboard.add_hotkey('alt+y', send_prompt)
