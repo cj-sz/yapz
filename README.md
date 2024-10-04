@@ -1,3 +1,5 @@
+# yapz
+
 ```bash
 pip3 install hugchat python-dotenv
 ```
