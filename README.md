@@ -16,7 +16,9 @@ PASSWORD="password"
 ALT-Y to send your prompt. Make sure the markdown file is saved beforehand.
 
 end: terminate the conversation and program.
+
 switch: terminate the conversation and change models. TODO
+
 new: terminate the conversation and start a new one with the same model.
 
 Whenever a conversation is terminated it is logged.
